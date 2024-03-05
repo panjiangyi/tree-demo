@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { CloseButton } from "./close";
 import { CosmosHubAccount, OsmosisAccount } from "./account";
 import ArrowIcon from "@/assets/arrow.svg?react"
+import { Time } from "./time";
 const Container = styled.div`
     color:#fff;
     width:500px;
@@ -44,5 +45,6 @@ export const Card: React.FC = () => {
             <ArrowIcon$ />
             <OsmosisAccount />
         </AccountsContainer>
+        <Time />
     </Container>
 }
