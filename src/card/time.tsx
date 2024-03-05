@@ -7,12 +7,17 @@ const Container = styled.div`
     background-color: #151417;
     margin-top: 30px;
     padding:0 1rem;
+    font-size: 14px;
 `
 
 
 const ClockWithMargin = styled(Clock)`
     margin-right: 8px;
 `
+const CountingDown = styled.span`
+    font-weight: bold;
+    margin-left: 0.5em;
+`
 export const Time = () => {
-    return <Container><ClockWithMargin />Estimated time: 20 seconds</Container>
+    return <Container><ClockWithMargin />Estimated time:{' '} <CountingDown> 20 seconds</CountingDown></Container>
 }

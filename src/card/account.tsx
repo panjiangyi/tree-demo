@@ -2,6 +2,8 @@ import styled from "styled-components"
 import CosmosHubLogo from "@/assets/cosmos-hub-logo.svg?react"
 import OsmoLogo from "@/assets/osmo.svg?react"
 import EditIcon from "@/assets/edit.svg?react"
+import React, { forwardRef, useEffect, useRef } from "react"
+import { getHiddenAddress } from "@/utils/get-hidden-address"
 const Container = styled.div`
     max-width: calc(50% - 10px);
     flex:1;
@@ -30,33 +32,56 @@ const OsmoLogoWithMargin = styled(OsmoLogo)`
 const EditLogoWithMargin = styled(EditIcon)`
     margin-left: 4px;
     cursor: pointer;
-
 `
+
+
+const AddressRestContainer = styled.div`
+    flex:1;
+    border: none;
+    height: 2px;
+    background-image: radial-gradient(circle, #6a7685 1px, transparent 1px);
+    background-size: 5px;
+`
+const AddressRest: React.FC = () => {
+    return <AddressRestContainer></AddressRestContainer>
+}
 
 const AddressContainer = styled.div`
     flex:1;
+    display:flex;
+    align-items: center;
 `
-const Address = () => {
-    return <AddressContainer>
-        atomsdfdsafdfadsffdsf
-    </AddressContainer>
-}
 
-export const CosmosHubAccount: React.FC = () => {
-    return <Container>
+
+
+const Address: React.FC<{
+    address: string;
+}
+> = (({ address }) => {
+    const { first, last } = getHiddenAddress(address)
+    return (
+        <AddressContainer>
+            {first} <AddressRest></AddressRest> {last}
+        </AddressContainer>
+    )
+})
+
+export const CosmosHubAccount: React.FC<{ address: string; }> = ({ address }) => {
+
+    return <Container >
         <Title>From Cosmos Hub</Title>
         <Bar>
             <CusmosHubLogoWithMargin />
-            <Address />
+            <Address address={address} />
         </Bar>
     </Container>
 }
-export const OsmosisAccount: React.FC = () => {
+export const OsmosisAccount: React.FC<{ address: string; }> = ({ address }) => {
     return <Container>
         <Title>To Osmosis</Title>
         <Bar>
             <OsmoLogoWithMargin />
-            <Address />
+            <Address address={address} />
             <EditLogoWithMargin />
         </Bar>
     </Container>

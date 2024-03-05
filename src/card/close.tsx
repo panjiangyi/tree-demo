@@ -9,7 +9,7 @@ const Container = styled.div`
     cursor: pointer;
     position: relative;
     &:hover {
-      opacity: 1;
+        opacity: 0.8;
     }
     &:before, &:after {
         position: absolute;

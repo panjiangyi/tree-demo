@@ -3,12 +3,14 @@ import { CloseButton } from "./close";
 import { CosmosHubAccount, OsmosisAccount } from "./account";
 import ArrowIcon from "@/assets/arrow.svg?react"
 import { Time } from "./time";
+import { Button } from "./button";
+import { TextButton } from "./text-button";
+import { Amount, } from "./amount";
 const Container = styled.div`
     color:#fff;
     width:500px;
-    height:550px;
     background-color: #212428;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 1rem;
     border-radius: 1rem;
 `;
 
@@ -28,10 +30,18 @@ const AccountsContainer = styled.div`
 `
 
 const ArrowIcon$ = styled(ArrowIcon)`
-    flex:1;
+    flex-shrink:0;
+    flex-grow:0;
     margin:0 4px;
     position: relative;
     top: 15px;
+`
+const TransferButton = styled.div`
+    margin-top:1rem;
+`
+const CancelButtonCon = styled.div`
+    text-align: center;
+    margin-top:1rem;
 `
 
 export const Card: React.FC = () => {
@@ -41,10 +51,17 @@ export const Card: React.FC = () => {
             <CloseButton />
         </Header>
         <AccountsContainer>
-            <CosmosHubAccount />
+            <CosmosHubAccount address="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" />
             <ArrowIcon$ />
-            <OsmosisAccount />
+            <OsmosisAccount address="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" />
         </AccountsContainer>
+        <Amount maxAmount={2} />
         <Time />
+        <TransferButton>
+            <Button />
+        </TransferButton>
+        <CancelButtonCon>
+            <TextButton />
+        </CancelButtonCon>
     </Container>
 }
