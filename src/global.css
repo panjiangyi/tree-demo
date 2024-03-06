@@ -1,28 +1,36 @@
 html {
-    font-family: Inter var, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-    font-size: 16px;
-    --main-text-color: #fff;
-    --secondary-text-color: #6a7685;
-    --contract-text-color: #212428;
-    --main-background-color: #212428;
-    --secondary-background-color: #2d3137;
-    --contract-background-color: #fff;
-    background-color: grey;
+  font-family:
+    Inter var,
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+  font-size: 16px;
+  --main-text-color: #fff;
+  --secondary-text-color: #6a7685;
+  --contract-text-color: #212428;
+  --main-background-color: #212428;
+  --secondary-background-color: #2d3137;
+  --contract-background-color: #fff;
+  background-color: grey;
 }
 
 .flex-center-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
