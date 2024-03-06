@@ -1,6 +1,6 @@
 ## How to install
 
-``npm install `
+`npm install `
 
 ## How to run
 
