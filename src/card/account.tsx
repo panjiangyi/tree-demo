@@ -2,7 +2,7 @@ import styled from "styled-components"
 import CosmosHubLogo from "@/assets/cosmos-hub-logo.svg?react"
 import OsmoLogo from "@/assets/osmo.svg?react"
 import EditIcon from "@/assets/edit.svg?react"
-import React, { forwardRef, useEffect, useRef } from "react"
+import React from "react"
 import { getHiddenAddress } from "@/utils/get-hidden-address"
 const Container = styled.div`
     max-width: calc(50% - 10px);

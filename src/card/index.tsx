@@ -6,9 +6,11 @@ import { Time } from "./time";
 import { Button } from "./button";
 import { TextButton } from "./text-button";
 import { Amount, } from "./amount";
-const Container = styled.div`
+const Container = styled.div<{
+    width: number
+}>`
     color:#fff;
-    width:500px;
+    width:${(props) => `${props.width}px`};;
     background-color: #212428;
     padding: 0.5rem 1rem 1rem;
     border-radius: 1rem;
@@ -44,8 +46,10 @@ const CancelButtonCon = styled.div`
     margin-top:1rem;
 `
 
-export const Card: React.FC = () => {
-    return <Container>
+export const Card: React.FC<{
+    width: number
+}> = ({ width }) => {
+    return <Container width={width}>
         <Header>
             <Title>Deposit ATOM</Title>
             <CloseButton />
