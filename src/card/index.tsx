@@ -9,6 +9,7 @@ import { Amount } from "./amount";
 const Container = styled.div<{
   width: number;
 }>`
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   color: var(--main-text-color);
   width: ${(props) => `${props.width}px`};
   background-color: var(--main-background-color);
