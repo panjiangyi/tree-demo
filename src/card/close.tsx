@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const Container = styled.div`
-    background-color: #2c3137;
+    background-color: var(--secondary-background-color);
     color:#fff;
     width: 32px;
     height: 32px;
@@ -18,7 +18,7 @@ const Container = styled.div`
         content: ' ';
         height: 18px;
         width: 2px;
-        background-color: #fff;
+        background-color: var(--main-text-color);
     }
     &:before {
         transform: rotate(45deg);
@@ -28,5 +28,5 @@ const Container = styled.div`
     }
 `
 export const CloseButton: React.FC = () => {
-    return <Container className="fuck"></Container>
+    return <Container></Container>
 }

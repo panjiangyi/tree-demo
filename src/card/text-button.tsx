@@ -4,7 +4,7 @@ const Container = styled.button`
     background-color: transparent;
     border:none;
     cursor: pointer;
-    color: #6a7685;
+    color: var(--secondary-text-color);
     &:hover {
         opacity: 0.8;
     }

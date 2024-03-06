@@ -7,14 +7,14 @@ import { getHiddenAddress } from "@/utils/get-hidden-address"
 const Container = styled.div`
     max-width: calc(50% - 10px);
     flex:1;
-    color:#6a7685;
+    color:var(--secondary-text-color);
 `
 const Title = styled.div`
     margin-bottom: 1rem;
 `
 
 const Bar = styled.div`
-    background-color: #141417;
+    background-color: var(--secondary-background-color);
     height: 50px;
     display:flex;
     align-items: center;
@@ -39,7 +39,7 @@ const AddressRestContainer = styled.div`
     flex:1;
     border: none;
     height: 2px;
-    background-image: radial-gradient(circle, #6a7685 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--secondary-text-color) 1px, transparent 1px);
     background-size: 5px;
 `
 const AddressRest: React.FC = () => {

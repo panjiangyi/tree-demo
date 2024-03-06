@@ -9,9 +9,9 @@ import { Amount, } from "./amount";
 const Container = styled.div<{
     width: number
 }>`
-    color:#fff;
+    color:var(--main-text-color);
     width:${(props) => `${props.width}px`};;
-    background-color: #212428;
+    background-color: var(--main-background-color);
     padding: 0.5rem 1rem 1rem;
     border-radius: 1rem;
 `;

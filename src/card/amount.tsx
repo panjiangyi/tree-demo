@@ -4,7 +4,7 @@ import { useState } from "react"
 import { safeRound } from "@/utils/safe-number"
 
 const Container = styled.div`
-    color:#6a7685;
+    color:var(--secondary-text-color);
     margin-top: 32px;
     
 `
@@ -39,7 +39,7 @@ const UnitContainer = styled.div`
     justify-content: center;
     align-items: center;
     .unit-symbol {
-        color:#fff;
+        color:var(--main-text-color);
 
     }
     .unit-usd {
@@ -57,11 +57,11 @@ const Unit: React.FC<{ value: number }> = ({ value }) => {
 const Input$ = styled.input`
     flex:1;
     background-color: transparent;
-    border:none;
+    border: none;
     outline: none;
     line-height: 68px;
     padding-left: 1em;
-    color: #fff;
+    color: var(--main-text-color);
 `
 const Input: React.FC<{
     maxValue: number
@@ -87,7 +87,7 @@ const Input: React.FC<{
 const Shortcut = styled.div`
     display: inline-block;
     line-height:27px;
-    background-color: #2c3137;
+    background-color: var(--secondary-background-color);
     cursor: pointer;
     text-align: center;
     padding:0 4px;

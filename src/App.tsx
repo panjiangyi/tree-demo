@@ -25,18 +25,48 @@ const RangeInput: React.FC<{
 
   }
 
+const Checkbox: React.FC<{
+  checked: boolean;
+  onChange: (v: boolean) => void;
+}> = ({
+  checked, onChange,
+}) => {
+    return <div>
+      <input type="checkbox" id="Theme" name="Theme" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      <label htmlFor="Theme"> Theme</label><br></br>
+    </div>
+  }
+
 
 const Container = styled.div`
     padding: 4em;
 `;
 
 function App() {
-  const [cardWidth, setCardWidth] = useState(500)
+  const [cardWidth, setCardWidth] = useState(500);
+  const [isDayTheme, setThemeType] = useState(false);
   return (
     <Container>
-      <p>
-        <RangeInput label="Change Card Width" value={cardWidth} max={1000} min={500} onChange={setCardWidth} />
-      </p>
+      <RangeInput label="Change Card Width" value={cardWidth} max={1000} min={500} onChange={setCardWidth} />
+      <Checkbox checked={isDayTheme} onChange={(_isDayTheme) => {
+        setThemeType(_isDayTheme);
+        if (_isDayTheme) {
+          document.documentElement.style.setProperty('--main-text-color', '#2a3035')
+          document.documentElement.style.setProperty('--secondary-text-color', '#5e6b7d')
+          document.documentElement.style.setProperty('--contract-text-color', '#fff')
+          document.documentElement.style.setProperty('--main-background-color', '#fff')
+          document.documentElement.style.setProperty('--secondary-background-color', '#eef2f8')
+          document.documentElement.style.setProperty('--contract-background-color', '#212428')
+        } else {
+          document.documentElement.style.setProperty('--main-text-color', '#fff')
+          document.documentElement.style.setProperty('--secondary-text-color', '#6a7685')
+          document.documentElement.style.setProperty('--contract-text-color', '#212428')
+          document.documentElement.style.setProperty('--main-background-color', '#212428')
+          document.documentElement.style.setProperty('--secondary-background-color', '#2d3137')
+          document.documentElement.style.setProperty('--contract-background-color', '#fff')
+        }
+
+      }} />
       <Card width={cardWidth} />
     </Container>
   )
