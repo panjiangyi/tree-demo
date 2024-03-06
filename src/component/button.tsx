@@ -7,12 +7,14 @@ const Container = styled.button`
   border: none;
   width: 100%;
   height: 70px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   &:hover {
     opacity: 0.8;
   }
 `;
-export const Button: React.FC = () => {
-  return <Container>Transfer</Container>;
+export const Button: React.FC<{
+  label: string;
+}> = ({ label }) => {
+  return <Container>{label}</Container>;
 };

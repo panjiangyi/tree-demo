@@ -5,7 +5,7 @@ const Container = styled.div`
   color: #fff;
   width: 32px;
   height: 32px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   position: relative;
   &:hover {

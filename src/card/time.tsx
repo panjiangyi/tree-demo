@@ -7,6 +7,7 @@ const Container = styled.div`
   background-color: var(--secondary-background-color);
   margin-top: 30px;
   padding: 0 1rem;
+  border-radius: var(--border-radius);
   font-size: 14px;
 `;
 

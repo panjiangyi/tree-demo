@@ -48,6 +48,51 @@ const Container = styled.div`
   padding: 4em;
 `;
 
+const changeTheme = (isDay: boolean) => {
+  if (isDay) {
+    document.documentElement.style.setProperty("--main-text-color", "#2a3035");
+    document.documentElement.style.setProperty(
+      "--secondary-text-color",
+      "#5e6b7d"
+    );
+    document.documentElement.style.setProperty("--contract-text-color", "#fff");
+    document.documentElement.style.setProperty(
+      "--main-background-color",
+      "#fff"
+    );
+    document.documentElement.style.setProperty(
+      "--secondary-background-color",
+      "#eef2f8"
+    );
+    document.documentElement.style.setProperty(
+      "--contract-background-color",
+      "#212428"
+    );
+  } else {
+    document.documentElement.style.setProperty("--main-text-color", "#fff");
+    document.documentElement.style.setProperty(
+      "--secondary-text-color",
+      "#6a7685"
+    );
+    document.documentElement.style.setProperty(
+      "--contract-text-color",
+      "#212428"
+    );
+    document.documentElement.style.setProperty(
+      "--main-background-color",
+      "#212428"
+    );
+    document.documentElement.style.setProperty(
+      "--secondary-background-color",
+      "#131417"
+    );
+    document.documentElement.style.setProperty(
+      "--contract-background-color",
+      "#fff"
+    );
+  }
+};
+
 function App() {
   const [cardWidth, setCardWidth] = useState(500);
   const [isDayTheme, setThemeType] = useState(false);
@@ -64,57 +109,7 @@ function App() {
         checked={isDayTheme}
         onChange={(_isDayTheme) => {
           setThemeType(_isDayTheme);
-          if (_isDayTheme) {
-            document.documentElement.style.setProperty(
-              "--main-text-color",
-              "#2a3035",
-            );
-            document.documentElement.style.setProperty(
-              "--secondary-text-color",
-              "#5e6b7d",
-            );
-            document.documentElement.style.setProperty(
-              "--contract-text-color",
-              "#fff",
-            );
-            document.documentElement.style.setProperty(
-              "--main-background-color",
-              "#fff",
-            );
-            document.documentElement.style.setProperty(
-              "--secondary-background-color",
-              "#eef2f8",
-            );
-            document.documentElement.style.setProperty(
-              "--contract-background-color",
-              "#212428",
-            );
-          } else {
-            document.documentElement.style.setProperty(
-              "--main-text-color",
-              "#fff",
-            );
-            document.documentElement.style.setProperty(
-              "--secondary-text-color",
-              "#6a7685",
-            );
-            document.documentElement.style.setProperty(
-              "--contract-text-color",
-              "#212428",
-            );
-            document.documentElement.style.setProperty(
-              "--main-background-color",
-              "#212428",
-            );
-            document.documentElement.style.setProperty(
-              "--secondary-background-color",
-              "#2d3137",
-            );
-            document.documentElement.style.setProperty(
-              "--contract-background-color",
-              "#fff",
-            );
-          }
+          changeTheme(_isDayTheme);
         }}
       />
       <Card width={cardWidth} />

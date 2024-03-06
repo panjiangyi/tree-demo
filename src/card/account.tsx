@@ -19,7 +19,7 @@ const Bar = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: 0 1rem;
 `;
 
@@ -61,7 +61,13 @@ const Address: React.FC<{
   const { first, last } = getHiddenAddress(address);
   return (
     <AddressContainer>
-      {first} <AddressRest></AddressRest> {last}
+      {last != null ? (
+        <>
+          {first} <AddressRest></AddressRest> {last}
+        </>
+      ) : (
+        first
+      )}
     </AddressContainer>
   );
 };

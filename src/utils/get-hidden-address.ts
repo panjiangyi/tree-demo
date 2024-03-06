@@ -1,12 +1,12 @@
 export function getHiddenAddress(address: string) {
-  if (address.length <= 10) {
+  const keepCount = 8;
+  if (address.length <= keepCount*2) {
     return {
       first: address,
       last: null,
     };
   }
 
-  const keepCount = 8;
   const first = address.substring(0, keepCount);
   const last = address.substring(address.length - keepCount);
 

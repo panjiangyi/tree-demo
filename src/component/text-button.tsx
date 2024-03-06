@@ -9,6 +9,8 @@ const Container = styled.button`
     opacity: 0.8;
   }
 `;
-export const TextButton: React.FC = () => {
-  return <Container>Cancel</Container>;
+export const TextButton: React.FC<{
+  label: string;
+}> = ({ label }) => {
+  return <Container>{label}</Container>;
 };

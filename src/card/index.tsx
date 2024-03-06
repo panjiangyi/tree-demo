@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { CloseButton } from "./close";
+import { CloseButton } from "../component/close";
 import { CosmosHubAccount, OsmosisAccount } from "./account";
 import ArrowIcon from "@/assets/arrow.svg?react";
 import { Time } from "./time";
-import { Button } from "./button";
-import { TextButton } from "./text-button";
+import { Button } from "../component/button";
+import { TextButton } from "../component/text-button";
 import { Amount } from "./amount";
 const Container = styled.div<{
   width: number;
@@ -63,10 +63,10 @@ export const Card: React.FC<{
       <Amount maxAmount={2} />
       <Time />
       <TransferButton>
-        <Button />
+        <Button label="Transfer" />
       </TransferButton>
       <CancelButtonCon>
-        <TextButton />
+        <TextButton label="Cancel" />
       </CancelButtonCon>
     </Container>
   );

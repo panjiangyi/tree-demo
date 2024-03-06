@@ -13,15 +13,10 @@ html {
   --secondary-text-color: #6a7685;
   --contract-text-color: #212428;
   --main-background-color: #212428;
-  --secondary-background-color: #2d3137;
+  --secondary-background-color: #131417;
   --contract-background-color: #fff;
+  --border-radius:4px;
   background-color: grey;
-}
-
-.flex-center-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 input::-webkit-outer-spin-button,

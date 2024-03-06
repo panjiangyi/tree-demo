@@ -17,7 +17,7 @@ const InputContainer = styled.div`
   display: flex;
   height: 68px;
   border: 1px solid #31373e;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding-right: 1em;
   margin: 13px 0;
 `;
@@ -91,11 +91,12 @@ const Input: React.FC<{
 const Shortcut = styled.div`
   display: inline-block;
   line-height: 27px;
+  font-weight: bold;
   background-color: var(--secondary-background-color);
   cursor: pointer;
   text-align: center;
   padding: 0 4px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   font-size: 13px;
   & + & {
     margin-left: 1em;
