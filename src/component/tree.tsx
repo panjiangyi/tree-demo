@@ -1,40 +1,87 @@
 import React, { useState } from "react";
 import { Checkbox } from "./checkbox";
-
+import uniq from "lodash.uniq";
+import { useMemoizedFn } from "ahooks";
 export interface TreeNode {
   id: number;
   name: string;
   children?: TreeNode[];
 }
 
+export type SelectedNodes = TreeNode["id"][];
+
+function getAllDescendantIds(node: TreeNode): number[] {
+  let ids: number[] = [];
+
+  if (node.children) {
+    node.children.forEach((child) => {
+      ids.push(child.id);
+      ids = [...ids, ...getAllDescendantIds(child)];
+    });
+  }
+
+  return ids;
+}
+
 const TreeNodeComponent: React.FC<{
   node: TreeNode;
-  selected: TreeNode[];
-  onSelect: (node: TreeNode[]) => void;
+  selected: SelectedNodes;
+  onSelect: (node: SelectedNodes) => void;
 }> = ({ node, selected, onSelect }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const hasChildren = node.children?.length;
+  const isLeaf = !node.children?.length;
+
+  const allDescendantIds = getAllDescendantIds(node);
 
   const handleToggle = () => {
-    if (!hasChildren) return;
+    if (isLeaf) return;
     setExpanded(!expanded);
   };
 
-  const handleSelect = () => {
-    // onSelect(node);
-  };
+  let isSelected: boolean;
+  if (isLeaf) {
+    isSelected = selected.includes(node.id);
+  } else {
+    const selectedDescendantIds = selected.filter((id) =>
+      allDescendantIds.includes(id)
+    );
+    isSelected = selectedDescendantIds.length === allDescendantIds.length;
+  }
 
   return (
     <div>
-      <div onClick={handleToggle} style={{ marginLeft: "20px" }}>
-        {hasChildren && (
-          <span onClick={handleToggle}>{expanded ? "-" : "+"}</span>
+      <div onClick={handleToggle} style={{ marginLeft: 20 }}>
+        {!isLeaf && (
+          <span
+            style={{ marginRight: 5, cursor: "pointer" }}
+            onClick={handleToggle}
+          >
+            {expanded ? "-" : "+"}
+          </span>
         )}
-        <span
-          onClick={handleSelect}
-          style={{ marginLeft: "10px", cursor: "pointer" }}
-        >
+        <Checkbox
+          checked={isSelected}
+          onClick={(e) => e.stopPropagation()}
+          onChange={(checked) => {
+            if (checked) {
+              if (isLeaf) {
+                onSelect(uniq([...selected, node.id]));
+              } else {
+                onSelect(uniq([...selected, ...allDescendantIds]));
+              }
+            } else {
+              if (isLeaf) {
+                onSelect(selected.filter((id) => id !== node.id));
+              } else {
+                onSelect(
+                  selected.filter((id) => !allDescendantIds.includes(id))
+                );
+              }
+            }
+          }}
+        />
+        <span style={{ marginLeft: "10px", cursor: "pointer" }}>
           {node.name}
         </span>
       </div>
@@ -56,20 +103,21 @@ const TreeNodeComponent: React.FC<{
 
 const Tree: React.FC<{
   data: TreeNode[];
-  selected: TreeNode[];
-  onSelect: (selectedNodes: TreeNode[]) => void;
+  selected: SelectedNodes;
+  onSelect: (selectedNodes: TreeNode["id"][]) => void;
 }> = ({ data, selected, onSelect }) => {
+  const _onSelect = useMemoizedFn((node: SelectedNodes) => onSelect(node));
   return (
-    <div>
+    <>
       {data.map((node) => (
         <TreeNodeComponent
           selected={selected}
           key={node.id}
           node={node}
-          onSelect={onSelect}
+          onSelect={_onSelect}
         />
       ))}
-    </div>
+    </>
   );
 };
 

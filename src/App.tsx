@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Tree, { TreeNode } from "@/component/tree";
+import Tree, { SelectedNodes, TreeNode } from "@/component/tree";
 
 const treeData: TreeNode[] = [
   {
@@ -27,11 +27,10 @@ const treeData: TreeNode[] = [
   },
 ];
 const App: React.FC = () => {
-  const [selectedNode, setSelectedNode] = useState<TreeNode[]>([]);
+  const [selectedNode, setSelectedNode] = useState<SelectedNodes>([]);
 
-  const handleSelect = (nodes: TreeNode[]) => {
+  const handleSelect = (nodes: SelectedNodes) => {
     setSelectedNode(nodes);
-    console.log("fuck", nodes);
   };
 
   return (

@@ -1,7 +1,3 @@
-## Preview URL
-
-https://code-challenge-v2.vercel.app/
-
 ## How to install
 
 `npm install `
