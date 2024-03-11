@@ -27,7 +27,8 @@ const TreeNodeComponent: React.FC<{
   node: TreeNode;
   selected: SelectedNodes;
   onSelect: (node: SelectedNodes) => void;
-}> = ({ node, selected, onSelect }) => {
+  onUnselect: (node: SelectedNodes) => void;
+}> = ({ node, selected, onSelect, onUnselect }) => {
   const [expanded, setExpanded] = useState(false);
 
   const isLeaf = !node.children?.length;
@@ -66,17 +67,15 @@ const TreeNodeComponent: React.FC<{
           onChange={(checked) => {
             if (checked) {
               if (isLeaf) {
-                onSelect(uniq([...selected, node.id]));
+                onSelect([node.id]);
               } else {
-                onSelect(uniq([...selected, ...allDescendantIds]));
+                onSelect(allDescendantIds);
               }
             } else {
               if (isLeaf) {
-                onSelect(selected.filter((id) => id !== node.id));
+                onUnselect([node.id]);
               } else {
-                onSelect(
-                  selected.filter((id) => !allDescendantIds.includes(id))
-                );
+                onUnselect(allDescendantIds);
               }
             }
           }}
@@ -90,6 +89,7 @@ const TreeNodeComponent: React.FC<{
           {node.children.map((child) => (
             <TreeNodeComponent
               selected={selected}
+              onUnselect={onUnselect}
               key={child.id}
               node={child}
               onSelect={onSelect}
@@ -106,7 +106,12 @@ const Tree: React.FC<{
   selected: SelectedNodes;
   onSelect: (selectedNodes: TreeNode["id"][]) => void;
 }> = ({ data, selected, onSelect }) => {
-  const _onSelect = useMemoizedFn((node: SelectedNodes) => onSelect(node));
+  const _onSelect = useMemoizedFn((node: SelectedNodes) => {
+    onSelect(uniq([...selected, ...node]));
+  });
+  const _onUnSelect = useMemoizedFn((node: SelectedNodes) => {
+    onSelect(selected.filter((id) => !node.includes(id)));
+  });
   return (
     <>
       {data.map((node) => (
@@ -115,6 +120,7 @@ const Tree: React.FC<{
           key={node.id}
           node={node}
           onSelect={_onSelect}
+          onUnselect={_onUnSelect}
         />
       ))}
     </>
